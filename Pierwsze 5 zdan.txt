@@ -1,0 +1,185 @@
+// 1) Weryfikacja czy zadana liczba jest liczbą pierwszą.
+import java.util.Scanner;
+public class liczba {
+
+	public static void main(String[] args) {
+		System.out.println("Podaj liczbe, sprawdzimy czy jest liczba pierwsza");
+		try (Scanner scan = new Scanner(System.in)) { 
+		int liczba = scan.nextInt(); 
+		pierwsza(liczba);
+            return;
+        }
+		
+		}
+	 private static void pierwsza(int liczba) {
+		 if (liczba<2) {
+			 System.out.println("nie jest");
+		 }
+		 if(liczba==2) {
+			 System.out.println("jest");
+		 }
+		 else {
+			 for(int i=2;i<=liczba;) {
+				  if(liczba%i==0) {
+                      System.out.println("nie jest");
+                      return;
+				  }
+				  else { 
+					  System.out.println("jest");
+					  return;
+					  }
+				  
+				  }		
+		 	}
+	 }
+}
+
+
+//   2) Wyświetlenie pierwszych 50 liczb ciągu Fibonacciego(Nasz program wyświetla tyle liczb o ile poprosimy)
+import java.util.Scanner;
+
+public class Fibo {
+	public static void main(String[] args) {
+		 try (Scanner scan = new Scanner(System.in)) {
+			System.out.println("Ile licznb Fibonaciego chcesz uzyskac");
+			int n = scan.nextInt();
+			fib(n); 
+		}
+
+	}
+		public static int fib(int n){
+		 int a=0;
+		 int b=1;
+	     	for(int i=0;i<n;i++) {
+	     		System.out.println(b);
+	     		b += a;
+	     		a = b-a;			
+			}
+		 return 0;
+		}
+
+}
+
+
+// 3) Zliczenie wystąpień znaków we wprowadzonym przez użytkownika ciągu znaków.
+import java.util.Scanner;
+
+public class dlg1 {
+
+	 public static void main(String[] args) {
+	        System.out.println("Napisz co tylko sobie marzysz"); 
+	        try (Scanner scan = new Scanner(System.in)) { 
+	            String srt = scan.nextLine(); 
+	            dlugosc(srt);
+	            return;
+	        }
+
+
+	    }
+
+	    private static String dlugosc(String abc) {
+
+
+	        System.out.println(abc.length());
+	        return abc;
+
+	    }
+
+}
+
+
+// 4) Wykonanie operacji mnożenia dwóch liczb niecałkowitych bez używania operacji mnożenia.
+
+//Importowanie klasy Scanner, biblioteka od wpisywania tekstu
+import java.util.Scanner;
+
+//Biblioteka od zmiany lokalizacji 
+import java.util.Locale;
+//Biblioteka matematyczna
+import static java.lang.Math.*;
+
+public class mnozenie {
+
+    private static Scanner scan2;
+
+	public static void main(String[] args) {
+
+        try (Scanner scan = new Scanner(System.in)) {
+			scan.useLocale(Locale.US); //wprowadzanie liczb z kropką jako separatorem
+			System.out.println("Podaj pierwszy mnożnik:");
+			double liczba1 = scan.nextDouble();
+
+			int ile = count(liczba1);
+			double liczba1Calkowita = liczba1 * pow(10, ile);
+
+			scan2 = new Scanner(System.in);
+			scan2.useLocale(Locale.US); //wprowadzanie liczb z kropką jako separatorem
+			System.out.println("Podaj drugi mnożnik:");
+			double liczba2 = scan2.nextDouble();
+
+			double suma = 0;
+
+			for(int i=0;i<liczba1Calkowita;i++) {
+			    suma = suma + liczba2;
+			 }
+			double wynik = suma / pow(10, ile);
+			double wynikZaokraglony = round(wynik);
+
+			System.out.println("Wynik mnożenia to: " + wynikZaokraglony);
+		}
+    }
+
+    public static int count(double value) {
+        String[] doubleToString = Double.toString(value).split("\\.");
+        int ile = doubleToString[1].length();
+        return ile;
+    }
+
+    public static double round(double num) {
+        int multi = 100;
+        int temp = (int) Math.round(num * multi);
+        return (double) temp / multi;
+    }
+}
+
+
+// 5) Napisanie aplikacji, która tworzy tablicę dwuwymiarową wypełnioną liczbami, w taki sposób, aby w kolumnach liczby się nie powtarzały. Tablica może być dowolnie duża.
+
+public class tabliceDwuwymiarowe {
+
+    public static void main(String[] args) {
+
+        //Stworzenie tablicy dwuwymiarowej
+        int[][] tablicaWielowymiarowa = new int[10][10];
+
+        //Zmienna zapisująca wyświetlaną liczbę
+        int x = 0;
+
+        //Pętla przechodząca pokolei przez każdy rząd
+        for(int i=0; i<tablicaWielowymiarowa.length; i++) {
+
+            //Pętla przechodząca pokolei przez każdą kolumnę
+            for(int j=0; j<tablicaWielowymiarowa.length; j++) {
+
+                //Zapytanie czy dana liczba jest mniejsza od 10, jeśli tak dodaj 0 na początku i ją wyświetl
+                if(x<10) {
+                    tablicaWielowymiarowa[i][j] = x;
+                    System.out.print("0" + tablicaWielowymiarowa[i][j] + " ");
+                    x++;
+                }
+
+                    //W innym wypadku poprostu wyświetl kolejny punkt z tablicy
+                    else {
+                        tablicaWielowymiarowa[i][j] = x;
+                        System.out.print(tablicaWielowymiarowa[i][j] + " ");
+                        x++;
+                    }
+            }
+
+            //Przejdz do nowej linijki
+            System.out.println();
+        }
+
+    }
+
+}
